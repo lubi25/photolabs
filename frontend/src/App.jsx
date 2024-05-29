@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
 
@@ -29,8 +28,8 @@ const photos = new Array(3).fill(null).map(() => ({
 const App = () => {
   return (
     <div className="App">
-      {photos.map((photo) => (
-        <PhotoListItem key={photo.id} photo={photo} />
+      {photos.map((photo, index) => (
+        <PhotoListItem key={index} photo={photo} />
       ))}
     </div>
   );
