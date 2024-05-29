@@ -13,6 +13,11 @@
 }
 
 .photo-list__fav-icon-svg {
-  padding: 7px;
-  top: 2px;
+  padding-top: 2px;
+}
+
+.FavIcon {
+  all: unset;
+  color: red;
+  padding: 6px 0px 0px 2px;
 }
