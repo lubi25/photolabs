@@ -2,6 +2,7 @@ import React from 'react';
 // import PhotoListItem from './components/PhotoListItem';
 import PhotoList from './components/PhotoList';
 import './App.scss';
+import TopicList from 'components/TopicList';
 
 // const photos = new Array(3).fill(null).map(() => ({
 //     id: "1",
@@ -21,7 +22,7 @@ const App = () => {
       {/* {photos.map((photo, index) => (
         <PhotoListItem key={index} photo={photo} />
       ))} */}
-
+      <TopicList />
       <PhotoList />
     </div>
   );
