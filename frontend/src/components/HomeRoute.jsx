@@ -20,7 +20,7 @@ const HomeRoute = (props) => {
       <PhotoList 
         photoData={props.photoData} 
         favorites={favorites}
-        onToggleFavorites={toggleFavorite} />
+        toggleFavorite={toggleFavorite} />
     </div>
   );
 };
