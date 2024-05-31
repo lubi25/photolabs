@@ -54,6 +54,7 @@
   color: #1e1e1e;
   margin-top: 24px;
   margin-bottom: 24px;
+  margin-left: 36px;
   width: 90%;
 }
 
@@ -74,4 +75,13 @@
   font-weight: 700;
   font-size: 12px;
   margin-left: 8px;
+}
+
+.photo-details-modal__similar-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
