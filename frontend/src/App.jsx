@@ -39,15 +39,15 @@ const App = () => {
         topicData={topicData} 
         openModal={handleOpenModal} 
         closeModal={handleCloseModal}
-        favorites={favorites}  // Pass `favorites` down to `HomeRoute`
-        toggleFavorite={toggleFavorite}  // Pass `toggleFavorite` handler down to `HomeRoute`
+        favorites={favorites} 
+        toggleFavorite={toggleFavorite} 
       />
       {openModal && 
         <PhotoDetailsModal
           onClose={handleCloseModal}
-          photoInfo={selectedPhoto}
-          similarPhotos={photoData} // Fixed typo here
-          isFavorite={isCurrentPhotoFavorited} // Pass isFavorite based on the current photo
+          selectedPhoto={selectedPhoto}
+          similarPhotos={photoData} 
+          isFavorite={isCurrentPhotoFavorited} 
           toggleFavorite={toggleFavorite}
         /> 
         }
