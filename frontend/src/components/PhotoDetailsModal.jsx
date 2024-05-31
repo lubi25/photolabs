@@ -49,14 +49,13 @@ const PhotoDetailsModal = ({ selectedPhoto, toggleFavorite, isFavorite, onClose 
 
                 <img src={photo.urls.regular} alt={`Similar to ${username}`} className="photo-list__image" />
 
-
-                {/* <div className="photo-list__user-details">
-                  <img src={photo.user.profile_image.medium} alt={`${photo.user.username}'s profile`} className="photo-list__user-profile" />
+                <div className="photo-list__user-details">
+                  <img src={profile} alt={`${photo.user.username}'s profile`} className="photo-list__user-profile" />
                   <section className="photo-list__user-info">
                     <div>{photo.user.name}</div>
                     <div className="photo-list__user-location">{photo.location.city}, {photo.location.country}</div>
                   </section>
-                </div> */}
+                </div>
               </div>
             </div>
           ))}
