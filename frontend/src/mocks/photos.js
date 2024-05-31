@@ -195,27 +195,27 @@ const photos = [
   {
     ...photo2,
     similar_photos: {
+      photo7,
       photo2,
-      photo3,
-      photo4,
-      photo5,
+      photo1,
+      photo2,
     }
   },
   {
     ...photo3,
     similar_photos: {
-      photo2,
-      photo3,
-      photo4,
       photo5,
+      photo6,
+      photo7,
+      photo8,
     }
   },
   {
     ...photo4,
     similar_photos: {
-      photo2,
+      photo1,
       photo3,
-      photo4,
+      photo9,
       photo5,
     }
   },
@@ -224,53 +224,53 @@ const photos = [
     similar_photos: {
       photo2,
       photo3,
-      photo4,
+      photo9,
       photo5,
     }
   },
   {
     ...photo6,
     similar_photos: {
-      photo2,
-      photo3,
-      photo4,
       photo5,
+      photo6,
+      photo9,
+      photo8,
     }
   },
   {
     ...photo7,
     similar_photos: {
-      photo2,
-      photo3,
-      photo4,
+      photo6,
       photo5,
+      photo4,
+      photo8,
     }
   },
   {
     ...photo8,
     similar_photos: {
-      photo2,
-      photo3,
-      photo4,
+      photo1,
       photo5,
+      photo4,
+      photo7,
     }
   },
   {
     ...photo9,
     similar_photos: {
-      photo2,
-      photo3,
       photo4,
-      photo5,
+      photo6,
+      photo8,
+      photo10,
     }
   },
   {
     ...photo10,
     similar_photos: {
+      photo1,
       photo2,
       photo3,
-      photo4,
-      photo5,
+      photo8,
     }
   }
 ]
