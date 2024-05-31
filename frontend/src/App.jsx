@@ -14,14 +14,19 @@ const App = () => {
     setOpenModal(true);
   };
 
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <div className="App">
       <HomeRoute 
         photoData={photoData} 
         topicData={topicData} 
         openModal={handleOpenModal} 
+        closeModal={handleCloseModal}
       />
-      {openModal && <PhotoDetailsModal />}
+      {openModal && <PhotoDetailsModal onClose={handleCloseModal} />}
     </div>
   );
 };
