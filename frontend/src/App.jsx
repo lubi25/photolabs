@@ -3,6 +3,7 @@ import './App.scss';
 import HomeRoute from './components/HomeRoute';
 import photos from './mocks/photos.js';
 import topics from './mocks/topics';
+import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 const App = () => {
   const [photoData, setPhotoData] = useState(photos);
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute photoData={photoData} topicData={topicData} />
+      <PhotoDetailsModal />
     </div>
   );
 };
