@@ -3,11 +3,11 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photo, toggleFavorite, isFavorite }) => {
+const PhotoListItem = ({ photo, toggleFavorite, isFavorite, openModal }) => {
   const { id, location: { city, country }, urls: { regular }, user: { username, name, profile } } = photo;
   
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={openModal}>
       <PhotoFavButton
         photoId={id}
         isFavorite={isFavorite} // Use the isFavorite prop directly
