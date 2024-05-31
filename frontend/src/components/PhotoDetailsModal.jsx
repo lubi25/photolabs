@@ -5,10 +5,10 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from './PhotoFavButton';
 import PhotoList from './PhotoList';
 
-const PhotoDetailsModal = ({ photoInfo, toggleFavorite, isFavorite, onClose, similarPhotos }) => {
-  const { id, location: { city, country }, urls: { regular }, user: { username, name, profile }, similar_photos } = photoInfo;
+const PhotoDetailsModal = ({ selectedPhoto, toggleFavorite, isFavorite, onClose }) => {
+  const { id, location: { city, country }, urls: { regular }, user: { username, name, profile }, similar_photos } = selectedPhoto;
   
-  const similarPhotosArray = Object.values(similar_photos || {});
+  const similarPhotosEntries = Object.entries(similar_photos || {});
 
   return (
     <div className="photo-details-modal">
@@ -34,33 +34,31 @@ const PhotoDetailsModal = ({ photoInfo, toggleFavorite, isFavorite, onClose, sim
         </div>
       </article>
 
+      <div className="photo-details-modal__header">Similar Photos</div>
+
       <article className='photo-details-modal__images'>
-        <div className="photo-details-modal__header">Similar Photos</div>
+        <div className="photo-details-modal__similar-photos">
+          {similarPhotosEntries.map(([key, photo]) => (
+            <div key={key} className="photo-details-modal__similar-item">
+              <div className="photo-list__item">
+              <PhotoFavButton
+                photoId={id}
+                isFavorite={isFavorite} 
+                toggleFavorite={() => toggleFavorite(id)}
+              /> 
+              <img src={photo.urls.regular} alt={`Similar to ${username}`} className="photo-list__image" />
 
-        {similarPhotosArray.map((photo, index) => (
-          <div key={index} className="photo-details-modal__similar-item"> 
-            <img src={photo.urls.regular} alt={`Similar to ${username}`} className="photo-details-modal__similar-image" />
-            
-
-            {/* <div className="photo-list__item" onClick={() => openModal(photo)}>
-      <PhotoFavButton
-        photoId={id}
-        isFavorite={isFavorite} // Use the isFavorite prop directly
-        toggleFavorite={() => toggleFavorite(id)} // Ensure you're calling toggleFavorite correctly
-      />
-      
-      <img src={regular} alt={`${username}'s photo`} className="photo-list__image" />
-      
-      <div className="photo-list__user-details">
-        <img src={profile} alt={`${username}'s profile`} className="photo-list__user-profile" />
-        <section className="photo-list__user-info">
-          <div>{name}</div>
-          <div className="photo-list__user-location">{city}, {country}</div>
-        </section>
-      </div>
-    </div> */}
+              <div className="photo-list__user-details">
+                <img src={profile} alt={`${username}'s profile`} className="photo-list__user-profile" />
+                <section className="photo-list__user-info">
+                  <div>{name}</div>
+                  <div className="photo-list__user-location">{city}, {country}</div>
+                </section>
+              </div>
+            </div>
           </div>
         ))}
+        </div>
 
       </article>
     </div>
