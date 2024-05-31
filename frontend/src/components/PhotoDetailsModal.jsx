@@ -41,23 +41,25 @@ const PhotoDetailsModal = ({ selectedPhoto, toggleFavorite, isFavorite, onClose 
           {similarPhotosEntries.map(([key, photo]) => (
             <div key={key} className="photo-details-modal__similar-item">
               <div className="photo-list__item">
-              <PhotoFavButton
-                photoId={id}
-                isFavorite={isFavorite} 
-                toggleFavorite={() => toggleFavorite(id)}
-              /> 
-              <img src={photo.urls.regular} alt={`Similar to ${username}`} className="photo-list__image" />
+                <PhotoFavButton
+                  photoId={photo.id}
+                  isFavorite={isFavorite}
+                  toggleFavorite={() => toggleFavorite(photo.id)}
+                />
 
-              <div className="photo-list__user-details">
-                <img src={profile} alt={`${username}'s profile`} className="photo-list__user-profile" />
-                <section className="photo-list__user-info">
-                  <div>{name}</div>
-                  <div className="photo-list__user-location">{city}, {country}</div>
-                </section>
+                <img src={photo.urls.regular} alt={`Similar to ${username}`} className="photo-list__image" />
+
+
+                {/* <div className="photo-list__user-details">
+                  <img src={photo.user.profile_image.medium} alt={`${photo.user.username}'s profile`} className="photo-list__user-profile" />
+                  <section className="photo-list__user-info">
+                    <div>{photo.user.name}</div>
+                    <div className="photo-list__user-location">{photo.location.city}, {photo.location.country}</div>
+                  </section>
+                </div> */}
               </div>
             </div>
-          </div>
-        ))}
+          ))}
         </div>
 
       </article>
