@@ -20,6 +20,18 @@ const App = () => {
     setOpenModal(false);
   };
 
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleFavorite = (photoId) => {
+    setFavorites(prevFavorites =>
+      prevFavorites.includes(photoId)
+        ? prevFavorites.filter(id => id !== photoId)
+        : [...prevFavorites, photoId]
+    );
+  };
+
+  const isCurrentPhotoFavorited = selectedPhoto ? favorites.includes(selectedPhoto.id) : false;
+
   return (
     <div className="App">
       <HomeRoute 
@@ -29,9 +41,14 @@ const App = () => {
         closeModal={handleCloseModal}
       />
       {openModal && 
-      <PhotoDetailsModal
-        onClose={handleCloseModal}
-        photoData={selectedPhoto} />}
+        <PhotoDetailsModal
+          onClose={handleCloseModal}
+          photoData={selectedPhoto}
+          similarPhotos={photoData} // Fixed typo here
+          isFavorite={isCurrentPhotoFavorited} // Pass isFavorite based on the current photo
+          toggleFavorite={toggleFavorite}
+        /> 
+        }
     </div>
   );
 };
