@@ -17,12 +17,15 @@ const HomeRoute = (props) => {
   return (
     <div className="HomeRoute">
       <TopNavigation 
-      topicData={props.topicData} 
-      favorites={favorites}/>
+        topicData={props.topicData} 
+        favorites={favorites} 
+      />
       <PhotoList 
         photoData={props.photoData} 
         favorites={favorites}
-        toggleFavorite={toggleFavorite} />
+        toggleFavorite={toggleFavorite} 
+        openModal={props.openModal}
+      />
     </div>
   );
 };
