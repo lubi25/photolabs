@@ -39,6 +39,8 @@ const App = () => {
         topicData={topicData} 
         openModal={handleOpenModal} 
         closeModal={handleCloseModal}
+        favorites={favorites}  // Pass `favorites` down to `HomeRoute`
+        toggleFavorite={toggleFavorite}  // Pass `toggleFavorite` handler down to `HomeRoute`
       />
       {openModal && 
         <PhotoDetailsModal
