@@ -15,7 +15,7 @@ const HomeRoute = (props) => {
   };
 
   return (
-    <div className="HomeRoute">
+    <div className="home-route">
       <TopNavigation 
         topicData={props.topicData} 
         favorites={favorites} 
