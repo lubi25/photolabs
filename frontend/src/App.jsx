@@ -9,6 +9,7 @@ const App = () => {
   const [photoData, setPhotoData] = useState(photos);
   const [topicData, setTopicData] = useState(topics);
   const [openModal, setOpenModal] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -26,7 +27,7 @@ const App = () => {
         openModal={handleOpenModal} 
         closeModal={handleCloseModal}
       />
-      {openModal && <PhotoDetailsModal onClose={handleCloseModal} />}
+      {openModal && <PhotoDetailsModal onClose={handleCloseModal} photoData={photoData} />}
     </div>
   );
 };
