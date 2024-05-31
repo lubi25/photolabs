@@ -45,7 +45,7 @@ const App = () => {
       {openModal && 
         <PhotoDetailsModal
           onClose={handleCloseModal}
-          photoData={selectedPhoto}
+          photoInfo={selectedPhoto}
           similarPhotos={photoData} // Fixed typo here
           isFavorite={isCurrentPhotoFavorited} // Pass isFavorite based on the current photo
           toggleFavorite={toggleFavorite}
