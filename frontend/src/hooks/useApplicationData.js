@@ -21,32 +21,32 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case FAV_PHOTO_ADDED:
+    case ACTIONS.FAV_PHOTO_ADDED:
       return {
         ...state,
         favorites: [...state.favorites, action.payload]
       };
-    case FAV_PHOTO_REMOVED:
+    case ACTIONS.FAV_PHOTO_REMOVED:
       return {
         ...state,
         favorites: state.favorites.filter(id => id !== action.payload)
       };
-    case SET_PHOTO_DATA:
+    case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
         photoData: action.payload
       };
-    case SET_TOPIC_DATA:
+    case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
         topicData: action.payload
       };
-    case SELECT_PHOTO:
+    case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
         selectedPhoto: action.payload
       }
-    case DISPLAY_PHOTO_DETAILS:
+    case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {
         ...state,
         openModal: action.payload
@@ -59,35 +59,6 @@ function reducer(state, action) {
 }
 
 function useApplicationData() {
-  // const [photoData, setPhotoData] = useState(photos);
-  // const [topicData, setTopicData] = useState(topics);
-  // const [openModal, setOpenModal] = useState(false);
-  // const [selectedPhoto, setSelectedPhoto] = useState(null);
-  // const [favorites, setFavorites] = useState([]);
-
-  // const updateToFavPhotoIds = (photoId) => {
-  //   setFavorites(prevFavorites =>
-  //     prevFavorites.includes(photoId)
-  //       ? prevFavorites.filter(id => id !== photoId)
-  //       : [...prevFavorites, photoId]
-  //   );
-  // };
-
-  // const setPhotoSelected = (photo) => {
-  //   setSelectedPhoto(photo);
-  //   setOpenModal(true);
-  // };
-
-  // const onClosePhotoDetailsModal = () => {
-  //   setOpenModal(false);
-  // };
-
-  // return { 
-  //   state: { photoData, topicData, openModal, selectedPhoto, favorites },
-  //   updateToFavPhotoIds,
-  //   setPhotoSelected,
-  //   onClosePhotoDetailsModal,  
-  // }
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
