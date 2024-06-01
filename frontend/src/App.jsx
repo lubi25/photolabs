@@ -1,34 +1,16 @@
 import React, { useState } from 'react';
 import './App.scss';
 import HomeRoute from './components/HomeRoute';
-import photos from './mocks/photos.js';
-import topics from './mocks/topics';
 import PhotoDetailsModal from './components/PhotoDetailsModal';
+import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
-  const [photoData, setPhotoData] = useState(photos);
-  const [topicData, setTopicData] = useState(topics);
-  const [openModal, setOpenModal] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-  const handleOpenModal = (photo) => {
-    setSelectedPhoto(photo);
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
-
-  const [favorites, setFavorites] = useState([]);
-
-  const toggleFavorite = (photoId) => {
-    setFavorites(prevFavorites =>
-      prevFavorites.includes(photoId)
-        ? prevFavorites.filter(id => id !== photoId)
-        : [...prevFavorites, photoId]
-    );
-  };
+  const {
+    state: { photoData, topicData, openModal, selectedPhoto, favorites },
+    updateToFavPhotoIds,
+    setPhotoSelected,
+    onClosePhotoDetailsModal,
+  } = useApplicationData();
 
   const isCurrentPhotoFavorited = selectedPhoto ? favorites.includes(selectedPhoto.id) : false;
 
@@ -37,20 +19,20 @@ const App = () => {
       <HomeRoute 
         photoData={photoData} 
         topicData={topicData} 
-        openModal={handleOpenModal} 
-        closeModal={handleCloseModal}
+        openModal={setPhotoSelected} 
+        closeModal={onClosePhotoDetailsModal}
         favorites={favorites} 
-        toggleFavorite={toggleFavorite} 
+        toggleFavorite={updateToFavPhotoIds} 
       />
       {openModal && 
         <PhotoDetailsModal
-          onClose={handleCloseModal}
+          onClose={onClosePhotoDetailsModal}
           selectedPhoto={selectedPhoto}
           similarPhotos={photoData} 
           isFavorite={isCurrentPhotoFavorited} 
-          toggleFavorite={toggleFavorite}
+          toggleFavorite={updateToFavPhotoIds}
         /> 
-        }
+      }
     </div>
   );
 };
