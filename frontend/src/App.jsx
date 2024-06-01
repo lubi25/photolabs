@@ -16,7 +16,16 @@ const App = () => {
 
   const { photoData, topicData, openModal, selectedPhoto, favorites } = state;
 
-  const isCurrentPhotoFavorited = selectedPhoto ? favorites.includes(selectedPhoto.id) : false;
+
+
+  const onClosePhotoDetailsModal = () => {
+    setOpenModal(false);
+  };
+
+  const setPhotoSelected = (photo) => {
+    setSelectedPhoto(photo);
+    setOpenModal(true);
+  };
 
   return (
     <div className="App">
@@ -33,8 +42,8 @@ const App = () => {
           onClose={onClosePhotoDetailsModal}
           selectedPhoto={selectedPhoto}
           similarPhotos={photoData} 
-          isFavorite={isCurrentPhotoFavorited} 
           toggleFavorite={updateToFavPhotoIds}
+          favorites={favorites}
         /> 
       }
     </div>
