@@ -5,12 +5,16 @@ import PhotoDetailsModal from './components/PhotoDetailsModal';
 import useApplicationData from 'hooks/useApplicationData';
 
 const App = () => {
-  const {
-    state: { photoData, topicData, openModal, selectedPhoto, favorites },
+  const { 
+    state,
     updateToFavPhotoIds,
-    setPhotoSelected,
-    onClosePhotoDetailsModal,
+    setPhotoData,
+    setTopicData,
+    setOpenModal,
+    setSelectedPhoto,
   } = useApplicationData();
+
+  const { photoData, topicData, openModal, selectedPhoto, favorites } = state;
 
   const isCurrentPhotoFavorited = selectedPhoto ? favorites.includes(selectedPhoto.id) : false;
 
