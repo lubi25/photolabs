@@ -3,7 +3,7 @@ import "../styles/HomeRoute.scss";
 import PhotoList from './PhotoList';
 import TopNavigation from './TopNavigationBar';
 
-const HomeRoute = ({ topicData, photoData, openModal, favorites, toggleFavorite }) => {
+const HomeRoute = ({ topicData, photoData, openModal, closeModal, favorites, toggleFavorite }) => {
 
   return (
     <div className="home-route">
@@ -16,6 +16,7 @@ const HomeRoute = ({ topicData, photoData, openModal, favorites, toggleFavorite 
         favorites={favorites}
         toggleFavorite={toggleFavorite} 
         openModal={openModal}
+        closeModal={closeModal}
       />
     </div>
   );
