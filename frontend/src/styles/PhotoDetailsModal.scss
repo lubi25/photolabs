@@ -22,9 +22,11 @@
   cursor: pointer;
   margin-left: 16px;
   margin-top: 16px;
+  position: absolute;
 }
 
 .photo-details-modal__images {
+  max-width: 95%;
   margin-left: 36px;
   margin-top: 8px;
 }
@@ -32,6 +34,15 @@
 .photo-details-modal__image {
   max-width: 95%;
   border-radius: 8px;
+}
+
+.photo-details-modal__image .photo-list__item {
+  border: unset;
+}
+
+.photo-details-modal__image .photo-list__image {
+  width: 100%;
+  height: unset;
 }
 
 .photo-details-modal__top-bar {
@@ -77,11 +88,7 @@
   margin-left: 8px;
 }
 
-.photo-details-modal__similar-photos {
-  display: flex;
-  flex-wrap: wrap;
+.photo-details-modal__similar-photos .photo-list {
   justify-content: space-evenly;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  
 }
