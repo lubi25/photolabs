@@ -1,6 +1,4 @@
 import { useReducer, useState, useEffect } from "react";
-// import photos from '../mocks/photos';
-// import topics from '../mocks/topics';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
