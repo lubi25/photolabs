@@ -8,8 +8,6 @@ const App = () => {
   const { 
     state,
     updateToFavPhotoIds,
-    setPhotoData,
-    setTopicData,
     setOpenModal,
     setSelectedPhoto,
   } = useApplicationData();
