@@ -67,6 +67,13 @@ function useApplicationData() {
     }, []
   );
 
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+      .then(res => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+    }, []
+  );
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const updateToFavPhotoIds = (photoId) => {
