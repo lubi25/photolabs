@@ -30,8 +30,8 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute 
-        photoData={photoData} 
-        topicData={topicData} 
+        photoData={state.photoData} 
+        topicData={state.topicData} 
         openModal={setPhotoSelected} 
         closeModal={onClosePhotoDetailsModal}
         favorites={favorites} 
