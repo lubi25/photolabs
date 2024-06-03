@@ -1,6 +1,6 @@
-import { useReducer, useState } from "react";
-import photos from '../mocks/photos';
-import topics from '../mocks/topics';
+import { useReducer, useState, useEffect } from "react";
+// import photos from '../mocks/photos';
+// import topics from '../mocks/topics';
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -12,8 +12,8 @@ export const ACTIONS = {
 }
 
 const initialState = {
-  photoData: photos,
-  topicData: topics,
+  photoData: [],
+  topicData: [],
   openModal: false,
   selectedPhoto: null,
   favorites: []
@@ -59,6 +59,13 @@ function reducer(state, action) {
 }
 
 function useApplicationData() {
+
+  useEffect(() => {
+    fetch('http://localhost:8001/api/photos')
+      .then(res => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+    }, []
+  );
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
