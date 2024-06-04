@@ -6,7 +6,9 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  SELECT_TOPIC: 'SELECT TOPIC',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
 }
 
 const initialState = {
@@ -14,7 +16,9 @@ const initialState = {
   topicData: [],
   openModal: false,
   selectedPhoto: null,
-  favorites: []
+  favorites: [],
+  selectedTopic: null,
+  photosByTopic: []
 }
 
 function reducer(state, action) {
@@ -49,6 +53,16 @@ function reducer(state, action) {
         ...state,
         openModal: action.payload
       };
+    case ACTIONS.SELECT_TOPIC:
+      return {
+        ...state,
+        selectedTopic: action.payload
+      };
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      return {          
+        ...state,
+        photosByTopic: action.payload
+      };
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -71,6 +85,12 @@ function useApplicationData() {
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
     }, []
   );
+
+  useEffect(() => {
+    if (state.selectedTopicId) {
+      fetchPhotosByTopic(state.selectedTopicId);
+    }
+  }, [state.selectedTopicId]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -98,6 +118,20 @@ function useApplicationData() {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
   };
 
+  const setSelectedTopic = (topicId) => {
+    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: topicId });
+  };
+
+  const fetchPhotosByTopic = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+      .then(res => res.json())
+      .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
+      .catch(error => {
+        console.error('Error fetching photos by topic:', error);
+      });
+  };
+
+
   return {
     state,
     updateToFavPhotoIds,
@@ -105,6 +139,8 @@ function useApplicationData() {
     setTopicData,
     setOpenModal,
     setSelectedPhoto,
+    setSelectedTopic,
+    fetchPhotosByTopic
   }
 }
 
