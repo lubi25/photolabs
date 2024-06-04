@@ -10,11 +10,10 @@ const App = () => {
     updateToFavPhotoIds,
     setOpenModal,
     setSelectedPhoto,
+    fetchPhotosByTopic,
   } = useApplicationData();
 
   const { photoData, topicData, openModal, selectedPhoto, favorites } = state;
-
-
 
   const onClosePhotoDetailsModal = () => {
     setOpenModal(false);
@@ -34,6 +33,7 @@ const App = () => {
         closeModal={onClosePhotoDetailsModal}
         favorites={favorites} 
         toggleFavorite={updateToFavPhotoIds} 
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
       {openModal && 
         <PhotoDetailsModal

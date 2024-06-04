@@ -3,13 +3,18 @@ import "../styles/HomeRoute.scss";
 import PhotoList from './PhotoList';
 import TopNavigation from './TopNavigationBar';
 
-const HomeRoute = ({ topicData, photoData, openModal, closeModal, favorites, toggleFavorite }) => {
+const HomeRoute = ({ topicData, photoData, openModal, closeModal, favorites, toggleFavorite, fetchPhotosByTopic }) => {
+
+  const handleTopicClick = (topicId) => {
+    fetchPhotosByTopic(topicId);
+  };
 
   return (
     <div className="home-route">
       <TopNavigation 
         topicData={topicData} 
         favorites={favorites}
+        handleTopicClick={handleTopicClick}
       />
       <PhotoList 
         photoData={photoData} 

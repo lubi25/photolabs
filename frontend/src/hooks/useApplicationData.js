@@ -8,6 +8,7 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC',
 }
 
 const initialState = {
@@ -17,7 +18,10 @@ const initialState = {
   selectedPhoto: null,
   favorites: [],
   getPhotosByTopics: [],
+  selectedTopicId: null
 }
+
+const selectedTopicId = null;
 
 function reducer(state, action) {
   switch (action.type) {
@@ -50,6 +54,11 @@ function reducer(state, action) {
       return {
         ...state,
         openModal: action.payload
+      };
+     case ACTIONS.SET_SELECTED_TOPIC:
+      return {
+        ...state,          
+        selectedTopicId: action.payload,
       };
     case ACTIONS.GET_PHOTOS_BY_TOPICS:
       return {
@@ -86,14 +95,13 @@ function useApplicationData() {
   );
 
   useEffect(() => {
-    fetch('http://localhost:8001/api/topics/photos/:topic_id')
-      .then(res => res.json())
-      .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
-      .catch(error => {
-        console.error('Error fetching photos by topic:', error);
-      })
-    }, []
+    if (selectedTopicId) {
+      fetchPhotosByTopic(selectedTopicId);
+      }
+    }, [selectedTopicId]
   );
+
+    console.log(selectedTopicId);
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -121,8 +129,24 @@ function useApplicationData() {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
   };
 
-  const setGetTopicsByPhotos = (photos) => {
-    dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: photos });
+  const fetchPhotosByTopic = (topicId) => {
+    fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
+      })
+      .catch(error => {
+        console.error('Error fetching photos by topic:', error);
+      });
+  };
+
+  const setSelectedTopic = (topics) => {
+    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: topics });
   };
 
   return {
@@ -132,7 +156,8 @@ function useApplicationData() {
     setTopicData,
     setOpenModal,
     setSelectedPhoto,
-    setGetTopicsByPhotos
+    setSelectedTopic,
+    fetchPhotosByTopic,
   }
 }
 
