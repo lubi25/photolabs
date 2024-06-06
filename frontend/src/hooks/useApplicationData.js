@@ -88,16 +88,6 @@ function useApplicationData() {
   );
 
   useEffect(() => {
-    fetch('http://localhost:8001/api/topics/photos/:topic_id')
-      .then(res => res.json())
-      .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
-      .catch(error => {
-        console.error('Error fetching photos by topic:', error);
-      })
-    }, []
-  );
-
-  useEffect(() => {
     if (state.selectedTopic) {
       const topicId = state.selectedTopic.topicId;
       fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
