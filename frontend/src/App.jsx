@@ -20,7 +20,6 @@ const App = () => {
     selectedPhoto, 
     favorites,
     selectedTopic,
-    photosByTopic
   } = state;
 
 
@@ -43,7 +42,6 @@ const App = () => {
         favorites={favorites} 
         toggleFavorite={updateToFavPhotoIds} 
         setSelectedTopic={setSelectedTopic}
-        photosByTopic={photosByTopic}
       />
       {openModal && 
         <PhotoDetailsModal
