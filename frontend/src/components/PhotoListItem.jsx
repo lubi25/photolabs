@@ -10,11 +10,11 @@ const PhotoListItem = ({ photo, toggleFavorite, isFavorite, openModal }) => {
     <div className="photo-list__item">
       <PhotoFavButton
         photoId={id}
-        isFavorite={isFavorite} // Use the isFavorite prop directly
-        toggleFavorite={() => toggleFavorite(id)} // Ensure you're calling toggleFavorite correctly
+        isFavorite={isFavorite}
+        toggleFavorite={() => toggleFavorite(id)} 
       />
       
-      <img src={regular} alt={`${username}'s photo`} className="photo-list__image"  onClick={() => openModal(photo)}/>
+      <img src={regular} alt={`${username}'s photo`} className="photo-list__image" onClick={() => openModal(photo)}/>
       
       <div className="photo-list__user-details">
         <img src={profile} alt={`${username}'s profile`} className="photo-list__user-profile" />

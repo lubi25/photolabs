@@ -9,9 +9,8 @@ const HomeRoute = ({
   openModal, 
   closeModal, 
   favorites, 
-  toggleFavorite, 
-  photosByTopic, 
-  setSelectedTopic,
+  toggleFavorite,
+  setSelectedTopic, 
 }) => {
 
   const handleTopicClick = (topicId) => {
@@ -31,7 +30,6 @@ const HomeRoute = ({
         toggleFavorite={toggleFavorite} 
         openModal={openModal}
         closeModal={closeModal}
-        photosByTopic={photosByTopic}
       />
     </div>
   );
