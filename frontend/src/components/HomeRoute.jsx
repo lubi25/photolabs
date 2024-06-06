@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/HomeRoute.scss";
 import PhotoList from './PhotoList';
 import TopNavigation from './TopNavigationBar';
@@ -13,6 +13,7 @@ const HomeRoute = ({
   setSelectedTopic, 
 }) => {
 
+  // Handles the click behaviour when selecting a topic:
   const handleTopicClick = (topicId) => {
     setSelectedTopic(topicId);
   }

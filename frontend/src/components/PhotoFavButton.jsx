@@ -3,7 +3,9 @@ import React, { useCallback, useState } from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-const PhotoFavButton = ({ photoId, toggleFavorite, isFavorite }) => { // Use isFavorite directly
+const PhotoFavButton = ({ photoId, toggleFavorite, isFavorite }) => { 
+
+  // Handles the click behaviour when favoriting a photo:
   const handleClick = () => {
     toggleFavorite(photoId);
   };

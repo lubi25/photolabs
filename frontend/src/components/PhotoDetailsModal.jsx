@@ -6,10 +6,13 @@ import PhotoList from './PhotoList';
 import PhotoListItem from './PhotoListItem';
 
 const PhotoDetailsModal = ({ favorites, selectedPhoto, toggleFavorite, onClose }) => {
+  // Destructure values of selected photo:
   const { id, location: { city, country }, urls: { regular }, user: { username, name, profile }, similar_photos } = selectedPhoto;
   
+  // Access values of similar photos
   const similarPhotosEntries = Object.values(similar_photos);
 
+  // Check if image is favorited
   const isFavorite = favorites.includes(id);
 
   return (
@@ -24,7 +27,7 @@ const PhotoDetailsModal = ({ favorites, selectedPhoto, toggleFavorite, onClose }
             photo={selectedPhoto} 
             toggleFavorite={toggleFavorite} 
             isFavorite={isFavorite} 
-            openModal={() => {}} 
+            openModal={() => {}}        // Empty function as another modal cannot be opened within the modal
           />
         </article>
 
@@ -35,7 +38,7 @@ const PhotoDetailsModal = ({ favorites, selectedPhoto, toggleFavorite, onClose }
             photoData={similarPhotosEntries} 
             toggleFavorite={toggleFavorite} 
             favorites={favorites} 
-            openModal={() => {}}  
+            openModal={() => {}}        // Empty function as another modal cannot be opened within the modal
           />
         </div>
       </div>
