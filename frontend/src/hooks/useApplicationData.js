@@ -7,7 +7,7 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC',
 }
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
   openModal: false,
   selectedPhoto: null,
   favorites: [],
-  getPhotosByTopics: [],
+  selectedTopic: null,
 }
 
 function reducer(state, action) {
@@ -51,10 +51,10 @@ function reducer(state, action) {
         ...state,
         openModal: action.payload
       };
-    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+    case ACTIONS.SET_SELECTED_TOPIC:
       return {
         ...state,
-        getPhotosByTopics: action.payload
+        selectedTopic: action.payload
       };
     default:
       throw new Error(
@@ -64,6 +64,8 @@ function reducer(state, action) {
 }
 
 function useApplicationData() {
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetch('http://localhost:8001/api/photos')
@@ -95,7 +97,15 @@ function useApplicationData() {
     }, []
   );
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    if (state.selectedTopic) {
+      const topicId = state.selectedTopic.topicId;
+      fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+        .then(res => res.json())
+        .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+    }
+  }, [state.selectedTopic]);
+  
 
   const updateToFavPhotoIds = (photoId) => {
     if (state.favorites.includes(photoId)) {
@@ -121,9 +131,10 @@ function useApplicationData() {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
   };
 
-  const setGetTopicsByPhotos = (photos) => {
-    dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: photos });
+  const setSelectedTopic = (topicId) => {
+    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: { topicId } });
   };
+
 
   return {
     state,
@@ -132,7 +143,7 @@ function useApplicationData() {
     setTopicData,
     setOpenModal,
     setSelectedPhoto,
-    setGetTopicsByPhotos
+    setSelectedTopic,
   }
 }
 
